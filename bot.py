@@ -1,3 +1,27 @@
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import os
+
+
+# Tạo web server giả lập để Render không bị lỗi port
+class SimpleHandler(BaseHTTPRequestHandler):
+
+  def do_GET(self):
+    self.send_response(200)
+    self.end_headers()
+    self.wfile.write(b"Bot is active!")
+
+
+def run_server():
+  port = int(os.environ.get("PORT", 10000))
+  server = HTTPServer(("0.0.0.0", port), SimpleHandler)
+  server.serve_forever()
+
+
+# Chạy server web ngầm ở background
+threading.Thread(target=run_server, daemon=True).start()
+
+# --- PHẦN DƯỚI NÀY LÀ CODE BOT DISCORD CŨ CỦA BẠN ---
 import random
 import discord
 from discord.ext import commands
