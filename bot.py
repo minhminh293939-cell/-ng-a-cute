@@ -121,5 +121,5 @@ async def clear(ctx, amount: int = 5):
 
 
 # Token thật của bot Ong Dia
-TOKEN ="MTU2MjcwNDA4MjU0MjUyNjQ2NA.GhDxoT.beW8DQZFQwI4dGO808urZ-zXKz2jwAffplpgoI"
+TOKEN ="MTU2MjcwNDA4MjU0MjUyNjQ2NA.Gap_sm.grk4DgixBGnjaHJ5y-BBWnfUtaXznzuqxkqV94"
 bot.run(TOKEN)
