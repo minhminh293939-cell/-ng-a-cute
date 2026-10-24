@@ -1,6 +1,9 @@
+import os
+import random
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import os
+import discord
+from discord.ext import commands
 
 
 # Tạo web server giả lập để Render không bị lỗi port
@@ -21,10 +24,7 @@ def run_server():
 # Chạy server web ngầm ở background
 threading.Thread(target=run_server, daemon=True).start()
 
-# --- PHẦN DƯỚI NÀY LÀ CODE BOT DISCORD CŨ CỦA BẠN ---
-import random
-import discord
-from discord.ext import commands
+# --- PHẦN DƯỚI NÀY LÀ CODE BOT DISCORD CỦA BẠN ---
 
 # Cấu hình Intent
 intents = discord.Intents.default()
@@ -120,6 +120,6 @@ async def clear(ctx, amount: int = 5):
   await ctx.send(f"🧹 Đã xóa {amount} tin nhắn!", delete_after=3)
 
 
-# Token thật của bot Ong Dia
-TOKEN ="MTU2MjcwNDA4MjU0MjUyNjQ2NA.Gap_sm.grk4DgixBGnjaHJ5y-BBWnfUtaXznzuqxkqV94"
+# Lấy token an toàn từ biến môi trường trên Render (Không bị lộ lên GitHub)
+TOKEN = os.environ.get("DISCORD_TOKEN")
 bot.run(TOKEN)
